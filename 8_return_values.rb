@@ -44,10 +44,13 @@ end
 
 def mean(list_of_numbers)
   # Let's re-use the work we did above in the sum method
+  new_sum = sum(list_of_numbers)
+  new_sum = new_sum.to_f
+  count_numbers = list_of_numbers.length
+  count_numbers = count_numbers.to_f
+  mean_calc = new_sum/count_numbers
+  return mean_calc
 
-  # ====================
-  # Your code goes here.
-  # ====================
 end
 
 # VARIANCE
@@ -62,9 +65,15 @@ end
 def variance(list_of_numbers)
   # Let's re-use the work we did above in the mean method
 
-  # ====================
-  # Your code goes here.
-  # ====================
+  mean_var = mean(list_of_numbers)
+  differences = []
+
+  list_of_numbers.each do |cur_num|
+    mean_dif = cur_num - mean_var
+    differences.push mean_dif**2
+  end
+  return mean(differences)
+
 end
 
 # STANDARD DEVIATION
@@ -73,15 +82,17 @@ end
 #  - take the square root of the variance
 
 def standard_deviation(list_of_numbers)
-  # ====================
-  # Your code goes here.
-  # ====================
+ var = variance(list_of_numbers)
+ std_dev = var ** 0.5
+ return std_dev
+
 end
 
 
 # Finally, everything above allows us to do:
 
 first_dataset = [93, 65, 87, 68, 2, 64, 36, 96, 45, 47]
+
 stdev1 = standard_deviation(first_dataset)
 puts "The standard deviation of the first dataset is #{stdev1.round(2)}."
 
